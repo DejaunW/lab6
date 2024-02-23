@@ -1,8 +1,36 @@
+/*Dejaun Wilmott Lab 6 assignment*/
+
 #include <stdio.h>
+#include<stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+
+	int mid;
+
+	if(low > high)			// base case
+	{
+		return -1;
+	}
+
+	mid = (low + high)/2;   // creating a mid
+
+
+	if(numbers[mid] == value)     // if value is found on first try
+	{
+		return mid;
+	}
+
+	else if(value < numbers[mid])   // section off the lower half, change high to 1 less that mid
+	{
+		return search(numbers,low, mid-1, value);
+	}
+
+	else if (value > numbers[mid])   // section off the higher, change low to 1 higher than mid
+	{
+		return search(numbers, mid +1, high, value);
+	}
+	
 }
 
 void printArray(int numbers[], int sz)
